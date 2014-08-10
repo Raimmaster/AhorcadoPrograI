@@ -28,7 +28,16 @@ public class Ahorcado{
 					
 					break;
 					case 2:
-
+						
+						String frase=""; 
+ 						Scanner lea2 = new Scanner(System.in); 
+						for(;frase.contains("No")==false;) 
+						{ 
+							System.out.println("\tIngrese Una Palabra Nueva \n\tCaso Contrario escriba No: ");
+							frase=lea2.nextLine(); 
+							System.out.println("Ingreso "+frase.length()+" letras");
+						} 
+						 
 					break;
 					case 3:
 						System.out.println("Ingrese la dificultad que desea jugar: " +
