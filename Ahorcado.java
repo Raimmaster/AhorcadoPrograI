@@ -36,7 +36,6 @@ public class Ahorcado{
 							int longitud = palabras[palabrax].length();
 							int acertados=0, contador=0, espacios=1, restantes=0;
 							char [] encontrados= new char[longitud];
-							System.out.println(palabras[palabrax]);
 							//Inicializar variable restantes para intentos segun Dificultad
 							switch (dificultad){
 								case "FACIL":
