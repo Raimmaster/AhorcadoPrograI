@@ -125,16 +125,24 @@ public class Ahorcado{
 						
 					break;
 					case 2:
-						
+						//Variable para condicionar si desea agregar las 20 nuevas palabras o no
 						String frase=""; 
- 						Scanner lea2 = new Scanner(System.in); 
-						for(;frase.contains("No")==false;) 
-						{ 
-							System.out.println("\tIngrese Una Palabra Nueva \n\tCaso Contrario escriba No: ");
-							frase=lea2.nextLine(); 
-							System.out.println("Ingreso "+frase.length()+" letras");
-						} 
-						 
+ 						
+ 						//arreglo 
+						String []palabras2= new String[20];
+							 
+						 	System.out.println("\tIngrese Si y Luego Ingrese Las Veinte Palabras Nuevas"+ 
+						 						"\n\tCaso Contrario escriba No: ");
+							
+						 	frase= lea.next();								
+						 	if(frase.equalsIgnoreCase("si")){
+								
+							for (int i=0;  i  < 20 ;  i++){	
+								palabras2[i]=lea.next();
+								System.out.println("Ingreso "+palabras2[i].length()+" letras");
+								}						 		
+						 		palabras=palabras2;
+						 	}
 					break;
 					case 3:
 						System.out.println("Ingrese la dificultad que desea jugar: " +
