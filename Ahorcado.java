@@ -6,6 +6,7 @@ public class Ahorcado{
 		Scanner lea = new Scanner(System.in);
 		Random rnd = new Random();
 		
+		//Se inicializa de manera express el arreglo de palabras
 		String [] palabras = {"Complejo", "Ingeniero", "Geek", "Binario", "Hexadecimal",
 				"Infinito", "Externo", "Tarjeta", "Memoria", "Vicario",
 				"Alterno", "Guitarra", "Milagro", "Creativo", "Fascinante",
@@ -34,81 +35,89 @@ public class Ahorcado{
 							char caracter;
 							int palabrax = (int)(rnd.nextDouble() * 20.0);
 							int longitud = palabras[palabrax].length();
-							int acertados=0, contador=0, espacios=1, restantes=0;
-							char [] encontrados= new char[longitud];
+							int acertados = 0, contador = 0, espacios = 1, restantes = 0;
+							char [] encontrados = new char[longitud];
+
 							//Inicializar variable restantes para intentos segun Dificultad
 							switch (dificultad){
 								case "FACIL":
-									restantes=20;
+									restantes = 20;
 								break;
 								case "NORMAL":
-									restantes=15;
+									restantes = 15;
 								break;
 								case "DIFICIL":
-									restantes=10;
+									restantes = 10;
 								break;
 								default:
-									dificultad="FACIL";
-									restantes=20;
+									dificultad = "FACIL";
+									restantes = 20;
 							}
 
 							//Imprimiendo _ de acuerdo a longitud de la palabra
-							while (espacios<=longitud){
-								encontrados[espacios-1]='_';
-								System.out.print(encontrados[espacios-1]+" ");
-								espacios++;
+							for (; espacios <= longitud; espacios++){//espacioas ya está definido arriba
+								encontrados[espacios - 1] = '_';
+								System.out.print(encontrados[espacios - 1] + " ");
 							}
 
 							do{
 								System.out.printf("%nEscoja el numero de la opcion que desea usar:%n1 - Ingresar un Caracter %n2 - Ingresar una Cadena%n");
-								entrada=lea.next().charAt(0);
+								entrada = lea.next().charAt(0);
 								switch (entrada){
 									case '1':
-										contador=0;
-										System.out.print("Ingrese caracter: "); caracter=lea.next().charAt(0);
+										contador = 0;
+										System.out.print("Ingrese caracter: "); 
+										caracter = lea.next().charAt(0);
+										
 										//Encontrando coincidencias
-										while (contador<longitud){
-											if (Character.toLowerCase(palabras[palabrax].charAt(contador))==Character.toLowerCase(caracter)){
-												encontrados[contador]=caracter;
+										while (contador < longitud){
+											if (Character.toLowerCase(palabras[palabrax].charAt(contador)) == Character.toLowerCase(caracter)){
+												encontrados[contador] = caracter;
 												acertados++;
 											}
 											contador++;
 										}
 										//Guardando registros de caracteres mas ingresados
-										contador=1;
-										while(contador<=26){
-											if (caracter == contador+100 || caracter == contador + 140){
+										contador = 1;
+										while(contador <= 26){
+											if ((caracter == contador + 100) || (caracter == contador + 140)){
 												popular[contador]++;
 											}
 											contador++;
 										}
+
+										System.out.println(contador);
+
 										//Imprimiendo los espacios y caracteres encontrados
-										espacios=1;
-										while (espacios<=longitud){
-											System.out.print(encontrados[espacios-1]+" ");
+										espacios = 1;
+										while (espacios <= longitud){
+											System.out.print(encontrados[espacios - 1] + " ");
 											espacios++;
 										}
+
 										//Validando si palabra armada por caracter y si restan intentos, Registrando juegos ganados y perdidos
-										if (acertados==longitud){
+										if (acertados == longitud){
 											ganados++;
-											restantes=0;
+											restantes = 0;
 											System.out.print("\nGanaste! Palabra Armada!");
-										} else if(restantes==0){
+										} else if(restantes == 0){
 											perdidos++;
 											System.out.print("\nNo te quedan mas intentos! Has perdido, Intentalo de Nuevo!");
 										}
+
 										restantes--;
 									break;
 									case '2':
-										System.out.print("Ingrese cadena: "); cadena= lea.next();
+										System.out.print("Ingrese cadena: "); 
+										cadena= lea.next();
 										//Validando si palabra ingresada es correcta
 										if (cadena.equalsIgnoreCase(palabras[palabrax])){
 											ganados++;
-											restantes=0;
+											restantes = 0;
 											System.out.print("Ganaste! Palabra ingresada correcta!");
 										}else{
 											perdidos++;
-											restantes=0;
+											restantes = 0;
 											System.out.print("Perdiste! Palabra ingresado incorrecta!");
 										}
 									break;
@@ -116,32 +125,30 @@ public class Ahorcado{
 										System.out.println("Ingrese una opcion valida.");
 
 								}
-							}while(acertados<longitud && restantes>0);
+							}while(acertados < longitud && restantes > 0);
 
 							System.out.printf("%nDesea volver a jugar? (si/no) ");
-							opjugar=lea.next();
-						}while (opjugar.equalsIgnoreCase("si"));
-
-						
+							opjugar = lea.next();
+						}while (opjugar.equalsIgnoreCase("si"));						
 					break;
 					case 2:
 						//Variable para condicionar si desea agregar las 20 nuevas palabras o no
-						String frase=""; 
+						String frase = ""; 
  						
  						//arreglo 
-						String []palabras2= new String[20];
+						String []palabras2 = new String[20];
 							 
-						 	System.out.println("\tIngrese Si y Luego Ingrese Las Veinte Palabras Nuevas"+ 
-						 						"\n\tCaso Contrario escriba No: ");
-							
-						 	frase= lea.next();								
+						 	System.out.print("\tIngrese Si y Luego Ingrese Las Veinte Palabras Nuevas" + 
+						 						"\n\tCaso Contrario escriba No: ");							
+						 	frase = lea.next();		
+
 						 	if(frase.equalsIgnoreCase("si")){
-								
-							for (int i=0;  i  < 20 ;  i++){	
-								palabras2[i]=lea.next();
-								System.out.println("Ingreso "+palabras2[i].length()+" letras");
+									
+								for (int i = 0; i < 20; i++){	
+									palabras2[i] = lea.next();
+									System.out.println("Ingreso " + palabras2[i].length() + " letras");
 								}						 		
-						 		palabras=palabras2;
+							 		palabras = palabras2;
 						 	}
 					break;
 					case 3:
@@ -155,7 +162,7 @@ public class Ahorcado{
 
 					break;
 					case 5:
-
+						System.out.println("SALIENDO...");						
 					break;
 					default:
 						System.out.println("Ingrese una opcion valida.");
