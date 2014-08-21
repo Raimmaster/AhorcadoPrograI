@@ -50,7 +50,7 @@ public class Ahorcado{
 							char caracter;
 							//int palabrax = (int)(rnd.nextDouble() * 20.0);
 							int palabrax = rnd.nextInt(20);
-							int longitud = palabras[palabrax].length();
+							int longitud = palabras[palabrax].length(), cstate = 0;
 							int acertados = 0, contador = 0, espacios = 1, restantes = 0;
 
 							char [] encontrados = new char[longitud];
@@ -89,25 +89,34 @@ public class Ahorcado{
 										abcSesion[caracter - 97]++;
 
 										//Encontrando coincidencias
-										boolean acierto = false; //variable de control por si encuentra o no en este intento
-										while (contador < longitud){
-											if (Character.toLowerCase(palabras[palabrax].charAt(contador)) == Character.toLowerCase(caracter)){
-												encontrados[contador] = caracter;
-												acertados++;
-												adivinados++;										
-												
-												acierto = true;
+										for(char c : encontrados){			
+											if (caracter==c){
+												cstate=1;
+												break;
 											}
-											contador++;
 										}
 
-										if (acierto == false){
-											System.out.println("\nEse caracter no existe en la palabra.");
-											restantes--;
-											fallados++;
-										}else
-											System.out.println("\nCaracter adivinado!");
+										if (cstate==0){
+											boolean acierto = false; //variable de control por si encuentra o no en este intento
+											while (contador < longitud){
+												if (Character.toLowerCase(palabras[palabrax].charAt(contador)) == Character.toLowerCase(caracter)){
+													encontrados[contador] = caracter;
+													acertados++;
+													adivinados++;										
+													
+													acierto = true;
+												}
+												contador++;
+											}
 
+											if (acierto == false){
+												System.out.println("\nEse caracter no existe en la palabra.");
+												restantes--;
+												fallados++;
+											}else
+												System.out.println("\nCaracter adivinado!");
+										} else
+											System.out.println("\nCaracter ya ha sido ingresado anteriormente.");
 										//Guardando registros de caracteres mas ingresados
 										
 										//contador = 1;
@@ -161,6 +170,7 @@ public class Ahorcado{
 									default:
 										System.out.println("\nIngrese una opcion valida.");
 								}
+								cstate = 0;
 							}while(acertados < longitud && restantes > 0);
 
 							System.out.printf("%nDesea volver a jugar? (si/no) ");
