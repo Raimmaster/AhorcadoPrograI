@@ -16,9 +16,11 @@ public class Ahorcado{
 		int opcion, ganados = 0, perdidos = 0, jugados = 0; //variables para opcion y para juegos		
 		double avgWin, avgLose; //promedios para ganes y perdidas
 
-		char [] abecedario = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-				'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-			
+		// char [] abecedario = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+		// 		'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+		
+		int [] abecedario = new int [26];	
+
 		char entrada;
 
 		do {
@@ -76,7 +78,7 @@ public class Ahorcado{
 							}
 
 							do{
-								System.out.printf("%nEscoja el numero de la opcion que desea usar:%n1 - Ingresar un Caracter %n2 - Ingresar una Cadena%n");
+								System.out.printf("%n%nEscoja el numero de la opcion que desea usar:%n1 - Ingresar un Caracter %n2 - Ingresar una Cadena%n");
 								entrada = lea.next().charAt(0);
 								
 								switch (entrada){
@@ -191,6 +193,10 @@ public class Ahorcado{
 							"\nJuegos perdidos al ingresar la palabra: " + loseByString +
 							"\nCaracter mas veces ingresado: " + caracterPop);
 
+						for (int i = 0; i < 26; i++){
+							abecedario[i] += abcSesion[i];
+						}
+
 						break;
 					case 2:
 							//Variable para condicionar si desea agregar las 20 nuevas palabras o no
@@ -231,13 +237,25 @@ public class Ahorcado{
 						break;
 					case 4:
 						int totalJuegos = ganados + perdidos;
-						avgWin = (double)totalJuegos / (double)ganados;
-						avgLose = (double)totalJuegos / (double)perdidos;	
-
-
+						avgWin = (double)ganados / (double)totalJuegos;
+						avgLose = (double)perdidos / (double)totalJuegos;	
 
 						char popular = 'a';
-						System.out.println("***REPORTE ESTADISTICO***\nCantidad de veces que se eligio la opcion JUGAR: " + jugados +
+
+						int maxRepeat = abecedario[0];
+
+						for (int i = 1; i <= 25; i++){
+							maxRepeat = Math.max(maxRepeat, abecedario[i]);
+						}
+
+						for (int i = 0; i <= 25; i++){
+							if (maxRepeat == abecedario[i]){
+								popular = (char)(i + 97);
+								break;
+							}
+						}
+
+						System.out.println("\n***REPORTE ESTADISTICO***\nCantidad de veces que se eligio la opcion JUGAR: " + jugados +
 							"\nJuegos ganados: " + ganados + "\nPromedio de juegos ganados: " + avgWin +
 							"\nJuegos perdidos: " + perdidos + "\nPromedio de juegos perdidos: " + avgLose +
 							"\nCaracter mas veces ingresado (historico): " + popular);
