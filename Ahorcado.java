@@ -74,6 +74,7 @@ public class Ahorcado{
 											if (Character.toLowerCase(palabras[palabrax].charAt(contador)) == Character.toLowerCase(caracter)){
 												encontrados[contador] = caracter;
 												acertados++;
+												System.out.println("Le pegaste a un caracter");
 											}
 											contador++;
 										}
@@ -86,7 +87,6 @@ public class Ahorcado{
 											contador++;
 										}
 
-										System.out.println(contador);
 
 										//Imprimiendo los espacios y caracteres encontrados
 										espacios = 1;
