@@ -181,7 +181,7 @@ public class Ahorcado{
 						jugados++;
 						ganados += ganesSesion;
 						perdidos += perdidasSesion;
-
+						/* BLOQUE PARA EL CHAR MAS POPULAR DE LA SESION; MISMO PROCESO QUE EL HISTORICO */
 						int repeat = abcSesion[0];
 
 						for (int i = 1; i <= 25; i++){
@@ -251,17 +251,17 @@ public class Ahorcado{
 						avgLose = (double)perdidos / (double)totalJuegos;	
 
 						char popular = 'a';
-
-						int maxRepeat = abecedario[0];
+						/* BLOQUE PARA ENCONTRAR EL CARACTER MAS POPULAR */
+						int maxRepeat = abecedario[0]; //var para almacenar el más repetido
 
 						for (int i = 1; i <= 25; i++){
-							maxRepeat = Math.max(maxRepeat, abecedario[i]);
+							maxRepeat = Math.max(maxRepeat, abecedario[i]); //for para almacenar el valor mayor del arreglo abecedario
 						}
 
-						for (int i = 0; i <= 25; i++){
-							if (maxRepeat == abecedario[i]){
-								popular = (char)(i + 97);
-								break;
+						for (int i = 0; i <= 25; i++){//arreglo para almacenar el char mas usado historicamente
+							if (maxRepeat == abecedario[i]){ 
+								popular = (char)(i + 97);//si es encontrado, se usa el indice + 97 para tener el valor ASCII
+								break; //salimos
 							}
 						}
 
