@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
-
+//COMENTARIO AGREGADO PARA PROBAR
+//LOS BRANCHES
 public class Ahorcado{
 	public static void main(String[] args) {
 		Scanner lea = new Scanner(System.in);
