@@ -86,7 +86,7 @@ public class Ahorcado{
 										contador = 0;
 										System.out.print("\nIngrese caracter: "); 
 										caracter = lea.next().charAt(0);
-										abcSesion[caracter - 97]++;
+										abcSesion[Character.toLowerCase(caracter) - 97]++;
 
 										//Encontrando coincidencias
 										for(char c : encontrados){			
